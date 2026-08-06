@@ -1,0 +1,325 @@
+/* Tailwind v4 site stylesheet. Single source of truth for design + custom CSS. */
+
+@theme {
+	--color-primary: #1c1712;
+	--color-primary-50:  #f7f3ee;
+	--color-primary-100: #e9e0d4;
+	--color-primary-200: #cfbfa8;
+	--color-primary-300: #a99373;
+	--color-primary-500: #6b5842;
+	--color-primary-600: #453a2e;
+	--color-primary-700: #2c2620;
+	--color-primary-800: #201b16;
+	--color-primary-900: #14100c;
+
+	--color-secondary: #ff8a3d;
+	--color-secondary-50:  #fff3e9;
+	--color-secondary-100: #ffdfc0;
+	--color-secondary-200: #ffc287;
+	--color-secondary-300: #ffa761;
+	--color-secondary-500: #ff8a3d;
+	--color-secondary-600: #e8691a;
+	--color-secondary-700: #b84f10;
+	--color-secondary-900: #6e2f08;
+
+	--color-mint: #38d99a;
+	--color-mint-100: #cdf5e4;
+	--color-mint-600: #1fae79;
+
+	--color-danger: #ff4747;
+	--color-danger-100: #ffd8d8;
+	--color-danger-600: #d61f1f;
+
+	--color-neutral: #14100c;
+	--color-background: #14100c;
+	--color-panel: #1c1712;
+
+	--font-display: "Gabarito", system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+	--text-sm:   0.875rem;
+	--text-base: 1rem;
+	--text-lg:   1.125rem;
+	--text-xl:   1.25rem;
+	--text-2xl:  1.5rem;
+	--text-3xl:  1.875rem;
+	--text-4xl:  2.25rem;
+	--text-5xl:  3rem;
+	--text-6xl:  3.75rem;
+	--text-7xl:  4.5rem;
+}
+
+@layer base {
+	body {
+		font-feature-settings: "ss01";
+		background-image:
+			radial-gradient(ellipse 900px 500px at 10% -10%, rgba(255,138,61,0.10), transparent 60%),
+			radial-gradient(ellipse 700px 500px at 100% 0%, rgba(56,217,154,0.06), transparent 60%);
+		background-attachment: fixed;
+	}
+	h1, h2, h3, h4 {
+		font-family: var(--font-display);
+		letter-spacing: -0.01em;
+	}
+	::selection {
+		background: var(--color-secondary);
+		color: var(--color-primary-900);
+	}
+}
+
+@layer components {
+	/* ---------- Buttons ---------- */
+	.btn-solid {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.85rem 1.75rem;
+		background: var(--color-secondary);
+		color: var(--color-primary-900);
+		font-weight: 700;
+		text-decoration: none;
+		border-radius: 999px;
+		letter-spacing: 0.01em;
+		transition: transform 0.12s ease, background-color 0.15s ease;
+		border: none;
+		cursor: pointer;
+	}
+	.btn-solid:hover {
+		background: var(--color-secondary-300);
+		transform: translateY(-1px);
+	}
+	.btn-solid:active {
+		transform: translateY(0);
+	}
+	.btn-outline {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.85rem 1.75rem;
+		background: transparent;
+		color: var(--color-primary-100);
+		border: 1.5px solid var(--color-primary-500);
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 999px;
+		transition: all 0.15s ease;
+		cursor: pointer;
+	}
+	.btn-outline:hover {
+		background: var(--color-primary-700);
+		border-color: var(--color-secondary);
+	}
+	.eyebrow {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--color-secondary);
+	}
+
+	/* ---------- Preset tiles ---------- */
+	.preset-tile {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.6rem;
+		padding: 1.15rem 1.15rem;
+		background: linear-gradient(155deg, var(--color-primary-700), var(--color-primary-800));
+		border: 1px solid var(--color-primary-600);
+		border-radius: 1rem;
+		cursor: pointer;
+		text-align: left;
+		transition: border-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+		width: 100%;
+	}
+	.preset-tile:hover {
+		border-color: var(--color-secondary);
+		transform: translateY(-2px);
+		box-shadow: 0 10px 30px -12px rgba(255,138,61,0.35);
+	}
+	.preset-tile:active {
+		transform: translateY(0);
+	}
+	.preset-tile .preset-name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.02rem;
+		color: var(--color-primary-50);
+		line-height: 1.25;
+	}
+	.preset-tile .preset-duration {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--color-secondary-200);
+		letter-spacing: 0.02em;
+	}
+	.preset-tile .preset-plus {
+		position: absolute;
+		top: 0.85rem;
+		right: 0.85rem;
+		width: 26px;
+		height: 26px;
+		border-radius: 999px;
+		background: var(--color-primary-600);
+		color: var(--color-secondary-200);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+	.preset-tile:hover .preset-plus {
+		background: var(--color-secondary);
+		color: var(--color-primary-900);
+	}
+
+	/* ---------- Active timer card (LCD look) ---------- */
+	.timer-card {
+		position: relative;
+		background: linear-gradient(160deg, var(--color-primary-700), var(--color-panel));
+		border: 1px solid var(--color-primary-500);
+		border-radius: 1.25rem;
+		padding: 1.5rem;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 12px 32px -18px rgba(0,0,0,0.6);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+	.timer-card.is-ringing {
+		border-color: var(--color-danger);
+		box-shadow: 0 0 0 3px rgba(255,71,71,0.25), 0 12px 40px -12px rgba(255,71,71,0.55);
+		animation: timer-flash 1s ease-in-out infinite;
+	}
+	.timer-card.is-paused {
+		opacity: 0.72;
+	}
+	.timer-digits {
+		font-family: var(--font-mono);
+		font-variant-numeric: tabular-nums;
+		font-weight: 700;
+		font-size: clamp(2.4rem, 6vw, 3.2rem);
+		letter-spacing: 0.01em;
+		color: var(--color-secondary-100);
+		line-height: 1;
+		text-shadow: 0 0 22px rgba(255,138,61,0.35);
+	}
+	.timer-card.is-ringing .timer-digits {
+		color: #fff;
+		text-shadow: 0 0 22px rgba(255,71,71,0.75);
+	}
+	.timer-card.is-paused .timer-digits {
+		color: var(--color-primary-200);
+		text-shadow: none;
+	}
+	.timer-ring-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-family: var(--font-sans);
+		font-size: 0.72rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		padding: 0.3rem 0.65rem;
+		border-radius: 999px;
+	}
+	.timer-ring-badge.state-running {
+		background: rgba(56,217,154,0.14);
+		color: var(--color-mint);
+	}
+	.timer-ring-badge.state-paused {
+		background: rgba(255,255,255,0.06);
+		color: var(--color-primary-200);
+	}
+	.timer-ring-badge.state-ringing {
+		background: rgba(255,71,71,0.18);
+		color: #ff8080;
+	}
+	.icon-btn {
+		width: 40px;
+		height: 40px;
+		border-radius: 999px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--color-primary-600);
+		color: var(--color-primary-100);
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+		flex-shrink: 0;
+	}
+	.icon-btn:hover {
+		background: var(--color-secondary);
+		color: var(--color-primary-900);
+	}
+	.icon-btn:active {
+		transform: scale(0.94);
+	}
+	.icon-btn.danger:hover {
+		background: var(--color-danger);
+		color: #fff;
+	}
+
+	/* ---------- Builder card ---------- */
+	.builder-card {
+		background: linear-gradient(160deg, var(--color-primary-700), var(--color-primary-800));
+		border: 1px solid var(--color-primary-600);
+		border-radius: 1.25rem;
+		padding: 1.75rem;
+	}
+	.dial-input {
+		width: 100%;
+		background: var(--color-primary-900);
+		border: 1px solid var(--color-primary-500);
+		border-radius: 0.75rem;
+		color: var(--color-secondary-100);
+		font-family: var(--font-mono);
+		font-size: 1.5rem;
+		text-align: center;
+		font-weight: 700;
+		padding: 0.6rem 0.25rem;
+	}
+	.dial-input:focus {
+		outline: none;
+		border-color: var(--color-secondary);
+	}
+	.sound-chip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.6rem;
+		padding: 0.7rem 0.9rem;
+		border-radius: 0.85rem;
+		border: 1px solid var(--color-primary-600);
+		background: var(--color-primary-800);
+		cursor: pointer;
+		transition: border-color 0.15s ease, background-color 0.15s ease;
+	}
+	.sound-chip:hover {
+		border-color: var(--color-secondary-300);
+	}
+	.sound-chip.is-selected {
+		border-color: var(--color-secondary);
+		background: rgba(255,138,61,0.10);
+	}
+	.sound-chip .chip-name {
+		font-weight: 700;
+		font-size: 0.92rem;
+		color: var(--color-primary-50);
+	}
+
+	@keyframes timer-flash {
+		0%, 100% { box-shadow: 0 0 0 3px rgba(255,71,71,0.25), 0 12px 40px -12px rgba(255,71,71,0.55); }
+		50% { box-shadow: 0 0 0 6px rgba(255,71,71,0.45), 0 12px 50px -8px rgba(255,71,71,0.85); }
+	}
+	@keyframes pulse-dot {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.35; }
+	}
+	.pulse-dot {
+		animation: pulse-dot 1.4s ease-in-out infinite;
+	}
+}
